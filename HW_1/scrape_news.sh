@@ -22,7 +22,7 @@ for ((i=1; i<=link_cnt; i++)); do
 	N=$(echo "$source" | grep -o Netanyahu | wc -l)
 	G=$(echo "$source" | grep -o Gantz | wc -l)
 	if [[ $N -eq 0 ]] && [[ $G -eq 0 ]]; then
-		echo "$url,-"
+		echo "$url, -"
 	else
 		echo "$url, Netanyahu, $N, Gantz, $G"
 	fi
