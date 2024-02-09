@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 	FILE *f;
 	int n_bins;
 	/* If no path was entered */
-	if (argc == 1 || !strcmp(argv[1], "-")) {
+	if (argc == 1 || strcmp(argv[1], "-") == 0 || strcmp(argv[1],"-nbins") == 0) {
 		f = stdin;
 	} else {
 		f = fopen(argv[1], "r");
@@ -18,7 +18,6 @@ int main(int argc, char *argv[]) {
 		fprintf(stderr, "Error, file does not found.\n");
 		return 1;
 	}
-
 	/* Checking for argument -nbins. */
 	for (int i = 0; i < argc; i++) {
 		// If user wrote "-nbins"
@@ -33,10 +32,12 @@ int main(int argc, char *argv[]) {
 				n_bins = 10;
 			}
 			i = argc; // No number provided. Set to default.
+		} else {
+			n_bins = 10;
 		}
+		
 	}
 
-	
 	mission(f, n_bins);
 }
 
@@ -46,8 +47,10 @@ void mission(FILE *f, int n_bins) {
 	int val;
 	int bin;
 	int n = 0;
+	
 	int lim[n_bins][2];
 	int range = 101/n_bins;
+	
 	for (int i = 0; i < n_bins; i++) {
 		hist[i] = 0;
 	}
@@ -56,8 +59,8 @@ void mission(FILE *f, int n_bins) {
 		lim[i-1][1] = lim[i-1][0]+range-1;
 		lim[i][0] = lim[i-1][1]+1;
 	}
-	lim[n_bins-1][1] = 100;
 	
+	lim[n_bins-1][1] = 100;
 	/* checking for numbers in file */
 	
 	while(1) {

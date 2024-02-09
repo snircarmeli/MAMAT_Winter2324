@@ -15,7 +15,6 @@ fi
 d_name="${course}_stat"
 if [[ -d "$d_name" ]]; then # Erase directory if exists
     rm  -r "$d_name"
-    echo Directory_removed
 fi
 mkdir "$d_name"
 
