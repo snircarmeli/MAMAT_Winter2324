@@ -118,7 +118,7 @@ int median(int arr[], int n) {
    for (int i = 0; i < 101; i++) {
         for (int j = 0; j < hist[i]; j++) {
             sorted[cnt] = i;
-            fprintf(stdout, "sorted[%d] = %d\n", cnt, sorted[cnt]);
+            //fprintf(stdout, "sorted[%d] = %d\n", cnt, sorted[cnt]);
             cnt++;
             
         }
