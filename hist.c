@@ -64,22 +64,18 @@ void mission(FILE *f, int n_bins) {
 	/* checking for numbers in file */
 	
 	while(1) {
-		//fprintf(stdout, "number of bins atfer %d itterations is %d\n", n, n_bins);
 		val = fscanf(f, "%d", &grade);
 		if (val == EOF) {
 			break;
 		}
-		//fprintf(stdout, "number of bins atfer %d itterations is %d\n", n, n_bins);
 		if (val != 1) { /* Recieved more than one argument */
 			fprintf(stderr, "Error, not a number");
 			exit(1);
 		}	
-		//fprintf(stdout, "number of bins atfer %d itterations is %d\n", n, n_bins);
 		if (grade < 0 || grade > 100) {
 			fprintf(stderr, "Error, not a valid grade in range of 0-100.");
 			exit(1);
 		}
-		//fprintf(stdout, "number of bins atfer %d iterations is %d\n", n, n_bins);
 		bin = grade/range;
 		if (bin >= n_bins-1) {
 			bin = n_bins-1;
@@ -87,11 +83,11 @@ void mission(FILE *f, int n_bins) {
 		//fprintf(stdout, "Bin is %d\n", bin);
 		hist[bin]++;
 		n++;
-		//fprintf(stdout, "number of bins atfer %d iterations is %d\n", n, n_bins);
 	}
 	//fprintf(stdout, "number of bins after while loop is %d\n", n_bins);
 	for (int i = 0; i < n_bins; i++) {
 		//fprintf(stdout, "hist[%d] is %d\n", i, hist[i]);
-		fprintf(stdout,"%d-%d\t %d\n", lim[i][0], lim[i][1], hist[i]);
+		int width = snprintf(NULL, 0, "%d-%d", lim[i][0], lim[i][1]);
+		fprintf(stdout,"%d-%d \t%d\n", lim[i][0], lim[i][1], hist[i]);
 	}
 }
