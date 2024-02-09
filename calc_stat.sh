@@ -26,3 +26,4 @@ max=$(./max.exe "$course")
 
 output="$mean\t$median\t$min\t$max"
 echo -e $output > "${d_name}/statistics.txt"
+cd "$d_name"
