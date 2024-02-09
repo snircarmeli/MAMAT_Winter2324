@@ -8,7 +8,7 @@ struct Node {
 };
 
 void mission(FILE *f);
-int median(int arr[]);
+int median(int arr[], int n);
 struct Node* createNode(int num);
 
 int main(int argc, char *argv[]){
@@ -85,30 +85,43 @@ void mission(FILE *f) {
     }
     free(head);
     free(current);
-    int med = median(grades);
+    int med = median(grades, cnt);
     fprintf(stdout, "%d\n", med);
 }
 
 
-int median(int arr[]) { // Linear sorting
+int median(int arr[], int n) { 
+    // Linear sorting
     int hist[101];
-    int cumsum[101];
-    int n = sizeof(*arr) / sizeof(arr[0]);
+    int sorted[n];
+    //int cumsum[101];
     for (int i = 0; i < 101; i++) {
         hist[i] = 0;
-        cumsum[i] = 0;
+        //cumsum[i] = 0;
     }
     for (int i = 0; i < n; i++) {
         hist[arr[i]]++;
     }
-    cumsum[0] = hist[0];
-    if (cumsum[0] >= n/2) {
-        return arr[0];
-    }
+    /*
+    //cumsum[0] = hist[0];
+    //if (cumsum[0] >= n/2) {
+    //    return arr[0];
+    //}
     for (int i = 1; i < 101; i++) {
         cumsum[i] = cumsum[i-1]+hist[i];
-        if (cumsum[i] >= n/2) {
+        if (cumsum[i] >= n/2 + n%2) {
             return arr[i];
         }
-    }   
+    }  
+    */
+   int cnt = 0;
+   for (int i = 0; i < 101; i++) {
+        for (int j = 0; j < hist[i]; j++) {
+            sorted[cnt] = i;
+            cnt++;
+            
+        }
+   }
+   return sorted[(n+1)/2];
+    
 }
