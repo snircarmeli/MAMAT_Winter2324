@@ -88,6 +88,6 @@ void mission(FILE *f, int n_bins) {
 	for (int i = 0; i < n_bins; i++) {
 		//fprintf(stdout, "hist[%d] is %d\n", i, hist[i]);
 		int width = snprintf(NULL, 0, "%d-%d", lim[i][0], lim[i][1]);
-		fprintf(stdout,"%d-%d \t%d\n", lim[i][0], lim[i][1], hist[i]);
+		fprintf(stdout,"%d-%d\t%d\n", lim[i][0], lim[i][1], hist[i]);
 	}
 }
