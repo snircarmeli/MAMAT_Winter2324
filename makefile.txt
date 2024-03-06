@@ -1,0 +1,37 @@
+# Compiler
+CC = gcc
+
+# Compiler flags
+CFLAGS = -Wall -g -std=c11
+
+# Source files
+SRCS = main.c stack.c student.c
+
+# Header files
+HDRS = common.h stack.h student.h
+
+# Object files
+OBJS = $(SRCS:.c=.o)
+
+# Executable name
+TARGET = prog.exe
+
+# Default rule
+all: $(TARGET)
+
+# Rule to build the executable
+$(TARGET): $(OBJS)
+    $(CC) $(CFLAGS) -o $@ $^
+
+# Rule to compile object files
+%.o: %.c $(HDRS)
+    $(CC) $(CFLAGS) -c -o $@ $<
+
+# Dependencies
+main.o: main.c common.h stack.h student.h
+stack.o: stack.c stack.h
+student.o: student.c student.h
+
+# Clean rule
+clean:
+    rm -f $(OBJS) $(TARGET)
